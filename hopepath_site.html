@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HopePath Rehabilitation Center</title>
+  <meta name="description" content="HopePath — Support, resources and confidential help for people recovering from substance use." />
+  <style>
+    :root{--accent:#0b63d6;--muted:#6b7280;--card:#ffffff;--bg:#f5f7fb}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:#0f1724;background:var(--bg)}
+    header{background:linear-gradient(90deg,var(--accent),#1366d6);color:white;padding:36px 20px;text-align:center}
+    header h1{margin:0;font-size:2rem}
+    header p{margin:6px 0 0;opacity:0.95}
+    .wrap{max-width:1100px;margin:28px auto;padding:0 18px}
+    .grid{display:grid;grid-template-columns:1fr 320px;gap:20px}
+    .card{background:var(--card);border-radius:12px;padding:20px;box-shadow:0 8px 24px rgba(15,23,42,0.06)}
+    .hero h2{margin-top:0}
+    .btn{display:inline-block;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:600}
+    .btn.primary{background:var(--accent);color:white}
+    .btn.ghost{border:1px solid rgba(11,99,214,0.12);color:var(--accent);background:transparent}
+    .list{margin:12px 0;padding-left:18px}
+    .muted{color:var(--muted)}
+    form label{display:block;margin-top:10px;font-weight:600}
+    input,select,textarea{width:100%;padding:10px;border:1px solid #e6eef7;border-radius:8px;margin-top:6px}
+    footer{margin-top:24px;padding:16px;text-align:center;color:var(--muted)}
+    @media(max-width:900px){.grid{grid-template-columns:1fr}.side{order:2}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HopePath Rehabilitation Center</h1>
+    <p>Helping individuals recover, rebuild, and restart — confidential support & guidance.</p>
+  </header>
+
+  <div class="wrap">
+    <div class="grid">
+      <main class="card hero">
+        <h2>You're not alone. Start here.</h2>
+        <p class="muted">We provide verified programs, peer support, counselling referrals, and a confidential appointment system.</p>
+
+        <div style="margin-top:16px">
+          <a class="btn primary" href="#contact">Book Appointment</a>
+          <a class="btn ghost" href="#programs">View Programs</a>
+        </div>
+
+        <section id="about" style="margin-top:18px">
+          <h3>About HopePath</h3>
+          <p class="muted">HopePath Rehabilitation Center provides professional care for people struggling with substance use. Our services include medical detox, therapy, counseling, and long-term recovery support tailored to each person's needs.</p>
+        </section>
+
+        <section id="programs" style="margin-top:18px">
+          <h3>Programs We Offer</h3>
+          <ul class="list muted">
+            <li>Detoxification &amp; Medical Support</li>
+            <li>Individual &amp; Group Therapy</li>
+            <li>Family Counselling</li>
+            <li>Rehabilitation &amp; Skill Development</li>
+            <li>Aftercare &amp; Relapse Prevention</li>
+          </ul>
+        </section>
+
+        <section id="testimonials" style="margin-top:18px">
+          <h3>Testimonials</h3>
+          <blockquote class="muted">“HopePath changed my life. The care and support I received helped me become myself again.” — Former Patient</blockquote>
+          <blockquote class="muted">“The counsellors were kind and patient. I felt understood and supported throughout my recovery journey.” — A Family Member</blockquote>
+        </section>
+
+      </main>
+
+      <aside class="card side">
+        <h4>Quick Help</h4>
+        <p class="muted"><strong>24/7 Crisis Hotline:</strong><br><span id="hotline">+91 98765 43210</span></p>
+
+        <h4 style="margin-top:12px">Contact</h4>
+        <p class="muted">Email: support@hopepathrehab.com<br>Location: Pune, Maharashtra</p>
+
+        <h4 style="margin-top:12px">Useful Links</h4>
+        <ul class="list muted">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+        </ul>
+
+        <div style="margin-top:12px">
+          <button class="btn primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book Appointment</button>
+        </div>
+      </aside>
+    </div>
+
+    <div class="card" id="contact" style="margin-top:20px">
+      <h3>Contact / Appointment</h3>
+      <p class="muted">Fill the form below and our team will contact you shortly. This is a prototype — no data is sent to a server; submissions are stored in your browser for demo purposes.</p>
+
+      <form id="apptForm" onsubmit="handleSubmit(event)">
+        <label for="name">Full name</label>
+        <input id="name" required />
+
+        <label for="phone">Phone number</label>
+        <input id="phone" required />
+
+        <label for="service">Service of interest</label>
+        <select id="service">
+          <option>Detox & Medical Support</option>
+          <option>Individual/Group Therapy</option>
+          <option>Family Counselling</option>
+          <option>Rehab & Skill Development</option>
+          <option>Aftercare</option>
+        </select>
+
+        <label for="notes">Additional notes (optional)</label>
+        <textarea id="notes" rows="3"></textarea>
+
+        <div style="margin-top:12px">
+          <button class="btn primary" type="submit">Submit Appointment Request</button>
+          <button class="btn ghost" type="button" onclick="resetForm()">Reset</button>
+        </div>
+      </form>
+
+      <div id="result" style="margin-top:12px;color:green;font-weight:600"></div>
+    </div>
+
+    <footer>
+      © HopePath Rehabilitation Center — Prototype. Replace hotline and email with verified contacts before publishing.
+    </footer>
+  </div>
+
+  <script>
+    // Simple client-side form handling (no server)
+    function handleSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const service = document.getElementById('service').value;
+      const notes = document.getElementById('notes').value.trim();
+
+      if(!name || !phone){
+        alert('Please enter name and phone');
+        return;
+      }
+
+      const entry = {name,phone,service,notes,timestamp:new Date().toISOString()};
+      // store in localStorage for demo purposes
+      const existing = JSON.parse(localStorage.getItem('hopepath_appointments')||'[]');
+      existing.push(entry);
+      localStorage.setItem('hopepath_appointments', JSON.stringify(existing));
+
+      document.getElementById('result').textContent = 'Thank you, ' + name + '. We received your request and will contact you shortly.';
+      document.getElementById('apptForm').reset();
+    }
+
+    function resetForm(){
+      document.getElementById('apptForm').reset();
+      document.getElementById('result').textContent = '';
+    }
+  </script>
+</body>
+</html>
